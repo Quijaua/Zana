@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Web tool to find out your display resolution, whether it's wide-screen, and the aspect ratio!">
+    <meta name="keywords" content="what is my resolution, display resolution, screen resolution, monitor resolution, aspect ratio, widescreen">
+    <title>Minha Resolução</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        color: #e0e0e0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .container {
+        max-width: 700px;
+        width: 90%;
+        margin-top: 60px;
+      }
+
+      h1 {
+        font-size: 28px;
+        color: #9B97E8;
+        text-align: center;
+        margin-bottom: 40px;
+        font-weight: 300;
+        letter-spacing: 2px;
+      }
+
+      .card {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        padding: 30px;
+        margin-bottom: 20px;
+        backdrop-filter: blur(10px);
+      }
+
+      .resolution-main {
+        text-align: center;
+        font-size: 48px;
+        font-weight: 700;
+        color: #e94560;
+        margin: 20px 0;
+        letter-spacing: 3px;
+      }
+
+      .resolution-label {
+        text-align: center;
+        font-size: 16px;
+        color: #9d9d9d;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .info-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-top: 20px;
+      }
+
+      .info-item {
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 8px;
+        padding: 20px;
+        text-align: center;
+      }
+
+      .info-item .label {
+        font-size: 12px;
+        color: #9d9d9d;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 8px;
+      }
+
+      .info-item .value {
+        font-size: 22px;
+        font-weight: 600;
+        color: #9B97E8;
+      }
+
+      .info-item .value.highlight {
+        color: #e94560;
+      }
+
+      footer {
+        margin-top: auto;
+        padding: 20px;
+        text-align: center;
+        color: #555;
+        font-size: 12px;
+      }
+    </style>
+
+    <script type="text/javascript">
+      var resratio = (screen.width / screen.height);
+      if (resratio >= 1.6) {
+        var widescreen_string = "Widescreen";
+      } else {
+        var widescreen_string = "Não é Widescreen";
+      }
+
+      if (1.32 < resratio && resratio < 1.34) {
+        var aspect_ratio_string = "4:3";
+      } else if (1.77 < resratio && resratio < 1.79) {
+        var aspect_ratio_string = "16:9";
+      } else if (1.59 < resratio && resratio < 1.61) {
+        var aspect_ratio_string = "16:10";
+      } else {
+        var aspect_ratio_string = resratio.toFixed(2) + ":1";
+      }
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Qual é a minha Resolução?</h1>
+
+      <div class="card">
+        <div class="resolution-label">Sua resolução</div>
+        <div class="resolution-main">
+          <script type="text/javascript">document.write(screen.width + 'x' + screen.height);</script>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="label">Resolução da Tela</div>
+            <div class="value highlight">
+              <script type="text/javascript">document.write(screen.width + 'x' + screen.height);</script> px
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="label">Proporção</div>
+            <div class="value">
+              <script type="text/javascript">document.write(aspect_ratio_string);</script>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="label">Tipo</div>
+            <div class="value">
+              <script type="text/javascript">document.write(widescreen_string);</script>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="label">Resolução do Navegador</div>
+            <div class="value">
+              <script type="text/javascript">document.write(window.innerWidth + 'x' + window.innerHeight);</script> px
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>Minha Tela</footer>
+  </body>
+</html>
